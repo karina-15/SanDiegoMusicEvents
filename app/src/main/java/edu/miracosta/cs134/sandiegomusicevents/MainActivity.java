@@ -2,7 +2,9 @@ package edu.miracosta.cs134.sandiegomusicevents;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -37,6 +39,26 @@ public class MainActivity extends AppCompatActivity {
         mMusicEventListAdapter = new MusicEventListAdapter(this, R.layout.event_list_item, eventsList);
         // TODO: Set the adapter of the list view to the newly instantiated adapter
         mMusicEventListView.setAdapter(mMusicEventListAdapter);
+    }
 
+    public void openEventDetails(View v)
+    {
+        // Extract the "tag"
+        MusicEvent clickedEvent = (MusicEvent) v.getTag();  // down cast to MusicEvent object
+        // Set up an intent
+        Intent intent = new Intent(this, EventDetailsActivity.class);
+
+        // Fill the intent with the details about the clicked event
+        intent.putExtra("Artist", clickedEvent.getArtist());
+        intent.putExtra("Date", clickedEvent.getDate());
+        intent.putExtra("Day", clickedEvent.getDay());
+        intent.putExtra("Time", clickedEvent.getTime());
+        intent.putExtra("Venue", clickedEvent.getVenue());
+        intent.putExtra("City", clickedEvent.getCity());
+        intent.putExtra("State", clickedEvent.getState());
+
+
+        // Go to (startActivity) event details
+        startActivity(intent);
     }
 }
