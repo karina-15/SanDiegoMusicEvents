@@ -19,6 +19,7 @@ public class MusicEvent {
     private String mState;
     private String mImageName;
 
+    public MusicEvent() { }
     public MusicEvent(String artist, String date, String day, String time, String venue, String city, String state, String imageName) {
         mArtist = artist;
         mDate = date;
